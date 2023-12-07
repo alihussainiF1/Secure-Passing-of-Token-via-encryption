@@ -47,6 +47,7 @@ These instructions will get you a copy of the project up and running on your loc
    ```
    MONGODB_URI=<your_mongodb_uri>
    JWT_SECRET=<your_jwt_secret>
+   SECRET_DECRYPT=<initial_key_for_users>
    ```
 5. Start the server:
    ```

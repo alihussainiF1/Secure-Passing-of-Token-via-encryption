@@ -2,13 +2,7 @@ import Transaction from '../models/Transaction.js';
 import User from '../models/User.js';
 import { encryptData,decryptData } from '../utils/cyrpto.js';
 
-
-// splitting trandactions 
-// keep track of addresses 
-// coins created 
-// coins 
 export const createTransaction = async (req, res) => {
-    // Logic to create a transaction
     const {sender_email,receiver_email,amount} = req.body;
     try {
         const sender_user = await User.findOne({email:sender_email});
@@ -38,13 +32,11 @@ export const createTransaction = async (req, res) => {
 };
 
 export const getTransactions = async (req, res) => {
-    // Assuming you get the user's email or ID from the request or JWT token
     const userId = req.user.userId;
     console.log('User ID: ',userId,typeof(userId));
     try {
-        // Find user by email or ID
-        console.log('hellopw')
-        const user = await User.findById(userId); // or User.findById(userId);
+
+        const user = await User.findById(userId); 
         console.log('yolo',user)
         if (!user) {
             return res.status(404).send('User not found');
@@ -54,11 +46,9 @@ export const getTransactions = async (req, res) => {
         if(!transactions){
             return res.status(404).send('Transaction Id not found');
         }
-        // Decrypt each transaction's encryptedToken
         const decryptedTransactions = transactions.map(transaction => {
             const decryptedString = decryptData(transaction.encryptedToken, user.decryptKey);
         
-            // Assuming the decrypted string format is "email has sent amount"
             const [senderEmail, , , amount] = decryptedString.split(' ');
             
             const decryptedData = {
@@ -86,20 +76,21 @@ export const getTransactionsBySender = async (req, res) => {
     console.log("helllo ali yolo")
     try {
         const user = await User.findById(userId);
+        console.log("User: ",user);
         if (!user) {
             return res.status(404).send('User not found');
         }
 
         const transactions = await Transaction.find({ senderId: senderId });
-
-        if (!transactions.length) {
+        console.log('Trx:',transactions)
+        if (!transactions.length || !transactions) {
             return res.status(404).send('No transactions found from this sender');
         }
 
         const decryptedTransactions = transactions.map(transaction => {
+            console.log('hi')
             const decryptedString = decryptData(transaction.encryptedToken, user.decryptKey);
-            
-            // Assuming the decrypted string format is "email has sent amount"
+            console.log("YOUOYOYO: ",decryptedString)
             const [receiverEmail, , , amount] = decryptedString.split(' ');
             
             const decryptedData = {
@@ -120,4 +111,3 @@ export const getTransactionsBySender = async (req, res) => {
     }
 };
 
-// Additional controller functions as needed

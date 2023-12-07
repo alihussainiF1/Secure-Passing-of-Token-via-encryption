@@ -62,18 +62,6 @@ After starting the server, you can use the application to:
 - Send tokens to other registered users.
 - View transaction history.
 
-## Contributing
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
-
 ## Authors
 
-- **Ali Hussaini** 
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
-
----
-
-Feel free to customize this README to add more specific information about your project, such as its structure, how to run tests, detailed usage instructions, screenshots, etc.
+- **Ali Hussaini**

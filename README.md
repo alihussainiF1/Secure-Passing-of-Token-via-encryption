@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-token_poc is a proof of concept application designed to demonstrate secure token handling and transaction management in a web application. This project implements a basic payment gateway simulation where users can send and receive virtual tokens.
+This is a proof of concept application designed to demonstrate secure token handling and transaction management in a web application. This project implements a basic payment gateway simulation where users can send and receive virtual tokens.
 
 ## Features
 
